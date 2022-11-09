@@ -7,44 +7,44 @@
  *
  * The function is expected to return an INTEGER_ARRAY.
  * The function accepts INTEGER_ARRAY nums as parameter.
- * Returns a sorted list of numbers according to the number of bits in the number, first sorted by bits and then sorted by number.
+ * Returns a sorted list of numbers according to the number of 1's in binary number, first sorted by qty 1's and then sorted by number.
  */
 
 function cardinalitySort($nums)
 {
     $array = [];
     $arrayRes = [];
-    /* Cria um array de numero => qtd BITS */
+    /* Create an array of numbers => qty 1's in binary number */
     foreach ($nums as $value) {
         $bin = decbin($value);
         $qtd = substr_count($bin, 1);
         $array[$value] = $qtd;
     }
 
-    /* Ordena os valores de acordo com a quantidade de BITS */
+    /* Sort values by qty number of 1's */
     asort($array, 0);
     print_r($array);
 
-    /* Verifica o maior valor de BITS */
+    /* Check max value */
     $count = max($array);
 
     $temp = [];
 
-    /* FOR para o tamanho máximo de BITS */
+    /* Iterate according max value */
     for ($i=1; $i <= $count; $i++) { 
-        /* Iteracao dentro do array comparando o valor com a quantidade de BITS */
+        /* Compare qty 1's and value */
         foreach ($array as $key => $value) {
-            /* Se iguais, salva dentro de um array temporario */
+            /* If true, save number in temp array */
             if($value === $i){
                 $temp[$i][] = $key;
             }
         }
 
-        /* Verifica se o array não é vazio */
+        /* Check if array is not empty */
         if($temp[$i]){
-            /* Ordena o array */
+            /* Sort array */
             sort($temp[$i]);
-            /* Salva no array final */
+            /* Put values in final array */
             foreach ($temp[$i] as $value) {
                 $arrayRes[] = $value;
             }
@@ -54,11 +54,11 @@ function cardinalitySort($nums)
     return $arrayRes;
 }
 
-/* Gera numeros aleatorios dentro do range */
+/* Generate random numbers */
 $random_number_array = range(0, 20000);
-/* Embaralha */
+/* Shuffle */
 shuffle($random_number_array);
-/* Corta o array no tamanho especificado */
+/* Array size determination */
 $test = array_slice($random_number_array ,0,100);
 
 $result = cardinalitySort($test);
