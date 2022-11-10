@@ -23,7 +23,9 @@ function cardinalitySort($nums)
 
     /* Sort values by qty number of 1's */
     asort($array, 0);
-    print_r($array);
+
+    /* Uncomment to see quantity of number 1's */
+    /* print_r($array); */
 
     /* Check max value */
     $count = max($array);
